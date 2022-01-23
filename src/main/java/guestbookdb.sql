@@ -29,6 +29,12 @@ values(seq_guestbook_no.nextval, '최연준', '19990913', 'ONE DREAM! 안녕하�
 insert into guestbook
 values(seq_guestbook_no.nextval, '최범규', '20010313', 'ONE DREAM! 안녕하세요 투모로우바이투게더 범규입니다', 
        sysdate);
+insert into guestbook
+values(seq_guestbook_no.nextval, '강태현', '20020205', 'ONE DREAM! 안녕하세요 투모로우바이투게더 태현입니다', 
+       sysdate);
+insert into guestbook
+values(seq_guestbook_no.nextval, '휴닝카이', '20020814', 'ONE DREAM! 안녕하세요 투모로우바이투게더 휴닝카이입니다', 
+       sysdate);         
        
        
 select  no,
