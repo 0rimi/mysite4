@@ -6,12 +6,13 @@
 	<!-- selectList -->
 	<select id="selectList" resultType="GuestbookVo">
 		<![CDATA[
-		SELECT person_id,
-       		   name,
-       		   hp,
-       		   company
-		FROM person
-		ORDER BY person_id desc
+		select  no,
+        		name,
+        		password,
+        		content,
+        		to_char(reg_date, 'yyyy-mm-dd hh24:mi:ss') reg_date
+		from guestbook
+		ORDER BY reg_date desc
 		]]>
 	</select>
 

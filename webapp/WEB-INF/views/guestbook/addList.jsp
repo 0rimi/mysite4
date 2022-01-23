@@ -43,7 +43,7 @@
 				<!-- //content-head -->
 
 				<div id="guestbook">
-					<form action="/mysite4/guest/add" method="">
+					<form action="/mysite4/guest/add" method="get">
 						<table id="guestAdd">
 							<colgroup>
 								<col style="width: 70px;">
@@ -72,6 +72,7 @@
 						
 					</form>	
 					
+					<c:forEach items="${requestScope.gbList }" var="vo">
 					<table class="guestRead">
 						<colgroup>
 							<col style="width: 10%;">
@@ -80,15 +81,16 @@
 							<col style="width: 10%;">
 						</colgroup>
 						<tr>
-							<td>1234555</td>
-							<td>이정재</td>
-							<td>2020-03-03 12:12:12</td>
+							<td>${vo.no }</td>
+							<td>${vo.name }</td>
+							<td>${vo.regDate }</td>
 							<td><a href="/mysite4/guest/delete/${no}">[삭제]</a></td>
 						</tr>
 						<tr>
 							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
 						</tr>
 					</table>
+					</c:forEach>
 					<!-- //guestRead -->
 					
 					
