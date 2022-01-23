@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.dao.GuestbookDao;
 import com.javaex.vo.GuestbookVo;
@@ -20,7 +21,7 @@ public class GuestbookController {
 	@Autowired
 	private GuestbookDao guestbookDao;
 	
-	@RequestMapping(value="/addList", method={RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value="/List", method={RequestMethod.GET, RequestMethod.POST})
 	public String addList(Model model) {
 		System.out.println("GuestbookController > addList");
 		
@@ -35,23 +36,33 @@ public class GuestbookController {
 	}
 
 	@RequestMapping(value="/add", method={RequestMethod.GET, RequestMethod.POST})
-	public String add() {
+	public String add(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("GuestbookController > add");
 		
-			
+		//받아온값 넣어주는 Dao사용.
+		guestbookDao.insert(guestbookVo);
 		
-		
-		return "guestbook/add";
+		return "redirect:/guest/List";
 	}
 	
-	@RequestMapping(value="/delete/{no}", method={RequestMethod.GET, RequestMethod.POST})
-	public String delete(@PathVariable("no") int no) {
+	@RequestMapping(value="/deleteForm", method={RequestMethod.GET, RequestMethod.POST})
+	public String deleteForm() {
+		System.out.println("GuestbookController > deleteForm");
+		
+		return "guestbook/deleteForm";
+	}
+	
+	@RequestMapping(value="/delete", method={RequestMethod.GET, RequestMethod.POST})
+	public String delete(@RequestParam("no") int no) {
 		System.out.println("GuestbookController > delete");
 		
-			
+		//받아온 no값 이용 특정 유저 정보 출력
+		GuestbookVo guestinfo = guestbookDao.getUser(no);
 		
+		//유저정보 이용, 게스트삭제
+		guestbookDao.delete(guestinfo);
 		
-		return "guestbook/delete";
+		return "redirect:/guest/List";
 	}
 
 	

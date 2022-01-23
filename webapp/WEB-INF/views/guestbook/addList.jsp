@@ -56,7 +56,7 @@
 									<th><label class="form-text" for="input-uname">이름</label></td>
 									<td><input id="input-uname" type="text" name="name"></td>
 									<th><label class="form-text" for="input-pass">패스워드</label></td>
-									<td><input id="input-pass"type="password" name="pass"></td>
+									<td><input id="input-pass"type="password" name="password"></td>
 								</tr>
 								<tr>
 									<td colspan="4"><textarea name="content" cols="72" rows="5"></textarea></td>
@@ -84,10 +84,10 @@
 							<td>${vo.no }</td>
 							<td>${vo.name }</td>
 							<td>${vo.regDate }</td>
-							<td><a href="/mysite4/guest/delete/${no}">[삭제]</a></td>
+							<td><a href="/mysite4/guest/deleteForm?no=${vo.no}">[삭제]</a></td>
 						</tr>
 						<tr>
-							<td colspan=4 class="text-left">방명록 글입니다. 방명록 글입니다.</td>
+							<td colspan=4 class="text-left">${vo.content }</td>
 						</tr>
 					</table>
 					</c:forEach>

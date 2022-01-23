@@ -24,5 +24,34 @@ public class GuestbookDao {
 		
 		return gbList;
 	}
+	
+	//게스트북 값 삽입
+	public int insert(GuestbookVo guestbookVo) {
+		System.out.println("insert()");
+		
+		int count  = sqlSession.insert("guestbook.insert", guestbookVo);
+		System.out.println(count+"건이 추가되었습니다.");
+		
+		return count;
+	}
+	
+	//특정 유저 하나 불러오기
+	public GuestbookVo getUser(int no) {
+		
+		GuestbookVo guestinfo = sqlSession.selectOne("guestbook.selectone", no);
+		System.out.println(guestinfo.toString());
+		
+		return guestinfo; 
+	}
+	
+	//게스트북 값 삭제
+	public int delete(GuestbookVo guestbookVo) {
+		System.out.println("delete()");
+		
+		int count = sqlSession.delete("guestbook.delete", guestbookVo);
+		System.out.println(count+"건이 삭제되었습니다.");
+		
+		return count;
+	}
 
 }
