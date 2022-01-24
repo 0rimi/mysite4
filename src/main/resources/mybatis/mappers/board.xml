@@ -2,4 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="board">
 
+	<!-- ResultMap -->
+	<resultMap id="RMBoardVo" type="BoardVo">
+		<result column="no" property="no" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="hit" property="hit" />
+		<result column="reg_date" property="regdate" />
+		<result column="user_no" property="userNo" />
+			  	<!-- 실제DB컬럼명 -->   <!-- 생성자명 -->
+	</resultMap>
+
+	<select id="selectList" resultMap="RMBoardVo">
+		<![CDATA[
+			SELECT 	b.no,
+					title,
+					content,
+					hit,
+					to_char(reg_date, 'yyyy-mm-dd') reg_date,
+					user_no,
+					u.name
+			FROM 	board b, users u
+			WHERE	b.user_no = u.no
+		]]>
+	</select>
+
 </mapper>
