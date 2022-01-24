@@ -21,4 +21,35 @@ public class UserDao {
 		
 		return authUser;
 	}
+	
+	//유저 저장(회원가입시사용)
+	public int insert(UserVo userVo) {
+		System.out.println("UserDao.insert()");
+		System.out.println(userVo);
+		
+		int count = sqlSession.insert("user.insert", userVo); 
+		System.out.println(count+"건이 저장되었습니다.");
+		
+		return count;
+	}
+	
+	//유저 정보 받아주는 메소드
+	public UserVo getinfo(int no) {
+		System.out.println("UserDao.getinfo()");
+		
+		UserVo userinfo = sqlSession.selectOne("user.selectOne", no);
+		System.out.println(userinfo);
+		
+		return userinfo;		
+	}
+	
+	//유저 정보 업데이트 해주는 메소드(수정용)
+	public int update(UserVo userVo) {
+		System.out.println("UserDao.update");
+		
+		int count = sqlSession.update("user.update", userVo);
+		System.out.println(count+"건이 수정되었습니다.");
+		
+		return count;
+	}
 }

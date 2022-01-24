@@ -9,6 +9,7 @@
 		<result column="password" property="password" />
 		<result column="content" property="content" />
 		<result column="reg_date" property="regDate" />
+			  <!-- 실제DB컬럼명 -->   <!-- 생성자명 -->
 	</resultMap>
     
 	<!-- selectList -->

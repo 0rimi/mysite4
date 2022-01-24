@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.dao.GuestbookDao;
+import com.javaex.service.GuestbookService;
 import com.javaex.vo.GuestbookVo;
 
 @Controller
@@ -19,14 +19,14 @@ public class GuestbookController {
 	
 	//필드
 	@Autowired
-	private GuestbookDao guestbookDao;
+	private GuestbookService guestbookService;
 	
 	@RequestMapping(value="/List", method={RequestMethod.GET, RequestMethod.POST})
 	public String addList(Model model) {
 		System.out.println("GuestbookController > addList");
 		
 		//다오에서 리스트 가져오기
-		List<GuestbookVo> gbList = guestbookDao.getList();
+		List<GuestbookVo> gbList = guestbookService.List();
 		
 		//모델로 보내기
 		model.addAttribute("gbList", gbList);
@@ -40,7 +40,7 @@ public class GuestbookController {
 		System.out.println("GuestbookController > add");
 		
 		//받아온값 넣어주는 Dao사용.
-		guestbookDao.insert(guestbookVo);
+		guestbookService.insert(guestbookVo);
 		
 		return "redirect:/guest/List";
 	}
@@ -57,10 +57,10 @@ public class GuestbookController {
 		System.out.println("GuestbookController > delete");
 		
 		//받아온 no값 이용 특정 유저 정보 출력
-		GuestbookVo guestinfo = guestbookDao.getUser(no);
+		GuestbookVo guestinfo = guestbookService.getUser(no);
 		
 		//유저정보 이용, 게스트삭제
-		guestbookDao.delete(guestinfo);
+		guestbookService.delete(guestinfo);
 		
 		return "redirect:/guest/List";
 	}
