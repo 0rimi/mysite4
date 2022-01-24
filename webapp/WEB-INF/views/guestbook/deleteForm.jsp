@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -43,7 +43,7 @@
 				<!-- //content-head -->
 	
 				<div id="guestbook">
-					<form action="/mysite4/guest/delete?no=${param.no }" method="post">
+					<form action="${pageContext.request.contextPath}/guest/delete?no=${param.no }" method="post">
 						<table id="guestDelete">
 							<colgroup>
 								<col style="width: 10%;">
@@ -55,7 +55,7 @@
 								<td>비밀번호</td>
 								<td><input type="password" name="password"></td>
 								<td class="text-left"><button type="submit">삭제</button></td>
-								<td><a href="/mysite4/guest/addList">[메인으로 돌아가기]</a></td>
+								<td><a href="${pageContext.request.contextPath}/guest/addList">[메인으로 돌아가기]</a></td>
 							</tr>
 						</table>
 						<input type='hidden' name="" value="">

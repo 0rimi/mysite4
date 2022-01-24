@@ -1,47 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="/mysite4/assets/css/mysite.css" rel="stylesheet" type="text/css">
-<link href="/mysite4/assets/css/main.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/mysite.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath}/assets/css/main.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 	<div id="wrap">
 
-		<div id="header" class="clearfix">
-			<h1>
-				<a href="">MySite</a>
-			</h1>
-
-			<!-- 
-			<ul>
-				<li>황일영 님 안녕하세요^^</li>
-				<li><a href="" class="btn_s">로그아웃</a></li>
-				<li><a href="" class="btn_s">회원정보수정</a></li>
-			</ul>
-			-->	
-			<ul>
-				<li><a href="" class="btn_s">로그인</a></li>
-				<li><a href="" class="btn_s">회원가입</a></li>
-			</ul>
-			
-		</div>
-		<!-- //header -->
-
-		<div id="nav">
-			<ul class="clearfix">
-				<li><a href="">입사지원서</a></li>
-				<li><a href="">게시판</a></li>
-				<li><a href="">갤러리</a></li>
-				<li><a href="">방명록</a></li>
-			</ul>
-		</div>
-		<!-- //nav -->
+		<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 		
 		<div id="container" class="clearfix">
@@ -51,7 +25,7 @@
 				<!-- content-head 없음 -->
 				<div id="index"> 
 				
-					<img id="profile-img" src="/mysite4/assets/image/gyul.png">
+					<img id="profile-img" src="${pageContext.request.contextPath}/assets/image/gyul.png">
 					
 					<div id="greetings">
 						<p class="text-xlarge">
@@ -69,7 +43,7 @@
 							<br>
 							방명록에 글 남겨주세요^ㅡ^!<br>
 							<br><br>
-							<a class="" href="">[방명록에 글 남기기]</a>
+							<a class="" href="${pageContext.request.contextPath}/guest/List">[방명록에 글 남기기]</a>
 						</p>	
 					</div>
 					<!-- //greetings -->
@@ -87,10 +61,7 @@
 		<!-- //container -->
 		
 		
-		<div id="footer">
-			Copyright ⓒ 2022 이영림. All right reserved
-		</div>
-		<!-- //footer -->
+		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	</div>
 	<!-- //wrap -->
