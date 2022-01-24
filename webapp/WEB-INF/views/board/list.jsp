@@ -67,8 +67,8 @@
 										<td>${vo.regdate }</td>
 										<!-- 로그인한 유저정보와 같아야만 보이게 하기 -->
 										<c:choose>
-											<c:when test="${authUser.no eq vo.no }">
-												<td><a href="">[삭제]</a></td>
+											<c:when test="${authUser.no eq vo.userNo }">
+												<td><a href="${pageContext.request.contextPath}/board/delete?no=${vo.no}">[삭제]</a></td>
 											</c:when>
 										</c:choose>
 									</tr>
@@ -95,8 +95,12 @@
 							
 							<div class="clear"></div>
 						</div>
-						<a id="btn_write" href="">글쓰기</a>
-					
+						<!-- 로그인한 유저만 글쓸수 있게하기 -->
+						<c:choose>
+							<c:when test="${authUser != null }">
+								<a id="btn_write" href="${pageContext.request.contextPath}/board/writeForm">글쓰기</a>		
+							</c:when>
+						</c:choose>
 					</div>
 					<!-- //list -->
 				</div>
