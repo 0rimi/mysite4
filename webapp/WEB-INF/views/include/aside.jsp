@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
 
-		<div id="aside">
-			<h2>회원</h2>
+	<div id="aside">
+		<h2>게시판</h2>
 			<ul>
-				<li>회원정보</li>
-				<li>로그인</li>
-				<li>회원가입</li>
+				<li><a href="${pageContext.request.contextPath}/board/List">일반게시판</a></li>
+				<li><a href="${pageContext.request.contextPath}/rboard/List">댓글게시판</a></li>
 			</ul>
-		</div>
+	</div>
+	<!-- //aside -->

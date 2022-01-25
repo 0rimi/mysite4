@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rboard">
+
+	<!-- ResultMap -->
+	<resultMap id="RMRBoardVo" type="RBoardVo">
+		<result column="no" property="no" />
+		<result column="user_no" property="userNo" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="hit" property="hit" />
+		<result column="reg_date" property="regDate" />
+		<result column="group_no" property="groupNo" />
+		<result column="order_no" property="orderNo" />
+		<result column="depth" property="depth" />
+			  	<!-- 실제DB컬럼명 -->   <!-- 생성자명 -->
+	</resultMap>
+
+	<select id="selectList" resultMap="RMRBoardVo">
+		<![CDATA[
+			SELECT 	r.no,
+					user_no,
+					title,
+					content,
+					hit,
+					to_char(reg_date, 'yyyy-mm-dd') reg_date,
+					group_no,
+					order_no,
+        			depth,
+        			u.name
+			FROM 	rboard r, users u
+			WHERE	r.user_no = u.no	
+			ORDER BY group_no DESC, order_no ASC
+		]]>
+	</select>
+	
+	
+
+</mapper>

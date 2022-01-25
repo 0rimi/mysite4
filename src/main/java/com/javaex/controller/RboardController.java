@@ -10,75 +10,92 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.service.BoardService;
+import com.javaex.service.RboardService;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.RBoardVo;
 
 @Controller
-@RequestMapping(value="/board")
-public class BoardController {
+@RequestMapping(value="/rboard")
+public class RboardController {
 	
 	//필드
 	@Autowired
-	private BoardService boardService;
+	private RboardService rboardService;
+	
 	
 	@RequestMapping(value="/List", method={RequestMethod.GET, RequestMethod.POST})
 	public String List(Model model) {
-		System.out.println("BoardController > List");
+		System.out.println("RboardController > rList");
 				
 		//리스트 출력해주는 메소드이용
-		List<BoardVo> bdList = boardService.list();
+		List<RBoardVo> rbdList = rboardService.list();
 		
 		//테스트출력
-		System.out.println(bdList.toString());
+		System.out.println(rbdList.toString());
 		
 		//모델로 보내주기
-		model.addAttribute("bdList",bdList);
+		model.addAttribute("rbdList",rbdList);
+		
 		
 		//뷰
-		return "board/list";
+		return "rboard/list";
 	}
+	
 	
 	@RequestMapping(value="/writeForm", method={RequestMethod.GET, RequestMethod.POST})
 	public String writeForm() {
-		System.out.println("BoardController > writeForm");
+		System.out.println("RBoardController > writeForm");
 				
-		return "board/writeForm";
+		return "rboard/writeForm";
 	}
 	
+	//그냥 글쓰기폼
 	@RequestMapping(value="/write", method={RequestMethod.GET, RequestMethod.POST})
 	public String write(@ModelAttribute BoardVo boardVo) {
-		System.out.println("BoardController > write");
+		System.out.println("RBoardController > write");
 				
 		//파라미터값 넣어준 BoardVo이용 insert메소드 사용
-		boardService.insert(boardVo);
+		
 		
 		//리다이렉트
-		return "redirect:/board/List";
+		return "redirect:/rboard/List";
+	}
+	
+	//댓글쓰기폼
+	@RequestMapping(value="/write", method={RequestMethod.GET, RequestMethod.POST})
+	public String rwrite(@ModelAttribute BoardVo boardVo) {
+		System.out.println("RBoardController > write");
+				
+		//파라미터값 넣어준 BoardVo이용 insert메소드 사용
+		
+		
+		//리다이렉트
+		return "redirect:/rboard/List";
 	}
 	
 	@RequestMapping(value="/read", method={RequestMethod.GET, RequestMethod.POST})
 	public String read(Model model, @RequestParam("no") int no) {
-		System.out.println("BoardController > read");
+		System.out.println("RBoardController > read");
 		
 		//특정 넘버의 게시글 조회수 1 올리면서 정보 가져오는 메소드 이용
-		BoardVo boardVo = boardService.read(no);
+		
 		
 		//모델로 보내기
-		model.addAttribute("boardVo", boardVo);
+		
 		
 		//뷰		
-		return "board/read";
+		return "rboard/read";
 	}
 	
 	@RequestMapping(value="/modifyForm", method={RequestMethod.GET, RequestMethod.POST})
 	public String modifyForm(@RequestParam("no") int no, Model model) {
-		System.out.println("BoardController > modifyForm");
+		System.out.println("RBoardControllerRBoardController > modifyForm");
 		
 		//특정 넘버의 게시글 정보 가져오는 메소드 이용
-		BoardVo binfo = boardService.getboard(no);
+		
 		
 		//모델을 사용해서 출력
-		model.addAttribute("binfo", binfo);
+		
 		
 		//뷰
 		return "board/modifyForm";
@@ -86,25 +103,24 @@ public class BoardController {
 	
 	@RequestMapping(value="/modify", method={RequestMethod.GET, RequestMethod.POST})
 	public String modify(@ModelAttribute BoardVo boardVo) {
-		System.out.println("BoardController > modify");
+		System.out.println("RBoardController > modify");
 		
 		//파라미터값을 넣은 BoardVo를 이용하여 수정하는 메소드 이용
-		boardService.update(boardVo);
+		
 		
 		//리다이렉트
-		return "redirect:/board/List";
+		return "redirect:/rboard/List";
 	}
 	
 	@RequestMapping(value="/delete", method={RequestMethod.GET, RequestMethod.POST})
 	public String delete(@RequestParam("no") int no) {
-		System.out.println("BoardController > delete");
+		System.out.println("RBoardController > delete");
 		
 		//특정 넘버의 게시글 삭제하는 메소드
-		boardService.delete(no);
+		
 		
 		//리다이렉트
-		return "redirect:/board/List";
+		return "redirect:/rboard/List";
 	}
-	
 
 }
