@@ -53,5 +53,15 @@ public class GuestbookDao {
 		
 		return count;
 	}
+	
+	//저장한 후 파라미터값 받아내는 메소드
+	public int insertSelectKey(GuestbookVo guestbookVo) {
+		System.out.println("insertSelectKey()");
+		
+		int count = sqlSession.insert("guestbook.inserSelect", guestbookVo);
+		System.out.println(count+"건이 저장되었습니다.");
+		
+		return count;
+	}
 
 }
