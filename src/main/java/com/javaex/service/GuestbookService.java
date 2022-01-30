@@ -33,6 +33,7 @@ public class GuestbookService {
 	public void insert(GuestbookVo guestbookVo) {
 		
 		guestbookDao.insert(guestbookVo);
+		System.out.println(guestbookVo);
 		
 	}
 	
