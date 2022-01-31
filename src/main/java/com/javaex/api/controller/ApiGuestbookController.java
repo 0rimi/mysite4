@@ -41,10 +41,12 @@ public class ApiGuestbookController {
 	public String write(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("ApiGuestbookContoller.write()");
 		
-		//write메소드
+		//write메소드 
 		guestbookservice.addGuestReturn(guestbookVo);
 		
 		return "redirect:/api/guest/list";
 	}
+	
+	//글쓰고, 다시 리스트 로딩필요
 	
 }
