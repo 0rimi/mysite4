@@ -133,7 +133,7 @@
 
 	//저장버튼이 클릭되었을때(이벤트)
 	$("#btnwrite").on("click", function() {
-		console.log("클릭")
+		console.log("json 전송 클릭")
 
 		//입력된 데이터를 가져오기
 		var name = $("#input-uname").val();
@@ -149,8 +149,33 @@
 
 		//출력
 		console.log(guestbookVo);
+		
+		//요청 : json 방식
+		$.ajax({
+			//url로 요청할게!    
+			url : "${pageContext.request.contextPath }/api/guest/write2",    
+			type : "post",
+			contentType : "application/json",		//보낼때 json으로 보낼게
+			data : JSON.stringify(guestbookVo),	//자바 스크립트 객체를 json형식으로 변경
 
-		//요청
+			dataType : "json", //jaon> javascript
+			success : function(guestbookVo) {
+				//성공시 처리해야될 코드 작성//
+				console.log(guestbookVo);
+				render(guestbookVo, "up"); //위로 붙일지!
+
+				//입력화면 초기화
+				$("#input-uname").val("");
+				$("#input-pass").val("");
+				$("[name='content']").val("");
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+		
+		/*
+		//요청: 파라미터 방식
 		$.ajax({
 			//url로 요청할게!    
 			url : "${pageContext.request.contextPath }/api/guest/write", //api의 리스트를 출력하는 메소드    
@@ -164,7 +189,7 @@
 
 			//dataType : "json", //jaon> javascript
 			success : function(guestbookVo) {
-				/*성공시 처리해야될 코드 작성*/
+				//성공시 처리해야될 코드 작성//
 				console.log(guestbookVo);
 				render(guestbookVo, "up"); //위로 붙일지!
 
@@ -177,6 +202,7 @@
 				console.error(status + " : " + error);
 			}
 		});
+		*/
 	})
 
 	//삭제팝업 버튼을 눌렀을때
