@@ -48,6 +48,19 @@ public class ApiGuestbookController {
 		return gVo;
 	}
 	
+	@ResponseBody //바디에 json으로 담아 보내기.
+	@RequestMapping("/remove")
+	public String remove(@ModelAttribute GuestbookVo delInfo) {
+		System.out.println("ApiGuestbookController.remove()");
+		
+		//값 불러오고 삭제
+		System.out.println(delInfo);
+		String result = guestbookservice.removeGuest(delInfo);
+		System.out.println(result);
+		
+		return result;
+	}
+	
 	
 	
 }
