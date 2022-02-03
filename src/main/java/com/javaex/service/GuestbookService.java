@@ -22,12 +22,6 @@ public class GuestbookService {
 		return gbList;
 	}
 	
-	//방명록 글 저장 > 저장글 리턴
-	public void addGuestReturn(GuestbookVo guestbookVo) {
-		
-		guestbookDao.insertSelectKey(guestbookVo);
-	}
-	
 	
 	//저장
 	public void insert(GuestbookVo guestbookVo) {
@@ -49,6 +43,25 @@ public class GuestbookService {
 	public void delete(GuestbookVo guestbookVo) {
 		
 		guestbookDao.delete(guestbookVo);
+	}
+	
+	//방명록 글 저장--> 저장글 리턴
+	public GuestbookVo addGuestResultVo(GuestbookVo guestbookVo) {
+	System.out.println("guestbookService/addGuestResultVo");
+	
+	//저장하기
+	guestbookDao.insertSelectKey(guestbookVo);
+	
+	//저장한 내용 가져오기
+	int no = guestbookVo.getNo();
+	return guestbookDao.getUser(no);
+	}
+	
+	//방명록 글 삭제
+	public int removeGuest(GuestbookVo guestbookVo){
+		System.out.println("guestbookService/remove");
+		
+		return guestbookDao.delete(guestbookVo);
 	}
 	
 }

@@ -38,13 +38,13 @@ public class ApiGuestbookController {
 	
 	//@ResponseBody
 	@RequestMapping("/write")
-	public String write(@ModelAttribute GuestbookVo guestbookVo) {
+	public GuestbookVo write(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("ApiGuestbookContoller.write()");
 		
-		//write메소드 
-		guestbookservice.addGuestReturn(guestbookVo);
-		
-		return "redirect:/api/guest/list";
+		//저장하고 저장된값 리턴
+		GuestbookVo gVo = guestbookservice.addGuestResultVo(guestbookVo);
+		System.out.println(gVo);
+		return gVo;
 	}
 	
 	//글쓰고, 다시 리스트 로딩필요
