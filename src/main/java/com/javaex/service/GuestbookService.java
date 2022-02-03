@@ -58,7 +58,7 @@ public class GuestbookService {
 	}
 	
 	//방명록 글 삭제
-	public int removeGuest(GuestbookVo guestbookVo){
+	public int removeGues3t(GuestbookVo guestbookVo){
 		System.out.println("guestbookService/remove");
 		
 		return guestbookDao.delete(guestbookVo);

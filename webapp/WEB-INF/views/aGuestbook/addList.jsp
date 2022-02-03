@@ -121,9 +121,16 @@
 					  password : password,
 					  content : content	}, 		//주소뒤에 갈 데이터 전송방식 
 
-		      dataType : "json", //jaon> javascript
-		      success : function(result){
-		         	     
+		      //dataType : "json", //jaon> javascript
+		      success : function(guestbookVo){
+		    	  	/*성공시 처리해야될 코드 작성*/
+					console.log(guestbookVo);
+					render(guestbookVo, "up"); //위로 붙일지!
+					
+					//입력화면 초기화
+					$("#input-uname").val("");  
+					$("#input-pass").val("");
+					$("[name='content']").val("");
 		      },
 		      error : function(XHR, status, error) {
 		         console.error(status + " : " + error);
@@ -131,8 +138,23 @@
 		   });
 	})
 	
+	//삭제팝업 버튼을 눌렀을때
+	//새로생긴애들이니까 부모한테 이벤트를 줘야함!
+	$("#listArea").on("click",".btnDelPop", function(){
+		
+		//자바스크립트  jquery변수
+		var $this = $(this);
+		console.log("btnDelPop클릭"); 
+		
+		//회색바탕위에 팝업창을 열기
+		
+				
+		
+	});
+	
 	//리스트 출력
 	function fetchList(){
+		
 		$.ajax({
 			  //url로 요청할게!    
 		      url : "${pageContext.request.contextPath }/api/guest/list",  //api의 리스트를 출력하는 메소드    
@@ -146,7 +168,7 @@
 		         console.log(guestList);		 
 		         //그리는 메소드(guestList);
 		         for(var i=0; i<guestList.length; i++){
-		        	 render(guestList[i]); 
+		        	 render(guestList[i], "down"); 
 		         }		     
 		      },
 		      error : function(XHR, status, error) {
@@ -155,7 +177,7 @@
 		   });
 	}
 	
-	function render(guestbookVo){
+	function render(guestbookVo, updown){
 			var str = '';
 			str += ' <table class="guestRead"> ';
 			str += ' 	<colgroup> ';
@@ -168,15 +190,24 @@
 			str += ' 		<td>'+guestbookVo.no+'</td> ';
 			str += ' 		<td>'+guestbookVo.name+'</td> ';
 			str += ' 		<td>'+guestbookVo.regDate+'</td> ';
-			str += ' 		<td><a href="${pageContext.request.contextPath}/guest/deleteForm?no='+guestbookVo.no+'">[삭제]</a></td> ';
+			str += ' 		<td><button class="btnDelPop" type="button" '+ guestbookVo.no +' >삭제</button></td> ';
 			str += ' 	</tr> ';
 			str += ' 	<tr> ';
 			str += ' 		<td colspan=4 class="text-left">'+guestbookVo.content+'</td> ';
 			str += ' 	</tr> ';
 			str += ' </table> ';	
 			
-			$("#listArea").append(str);		//만든 문자열 listArea에 누적형식으로 끼워넣기		
-		}
+			//$("#listArea").append(str);		//만든 문자열 listArea에 누적형식으로 끼워넣기
+			
+			if(updown == 'down'){
+				$("#listArea").append(str);
+			}else if(updown == 'up'){
+				$("#listArea").prepend(str);
+			}else {
+				console.log("방향오류");
+			}
+			
+		};
 	
 	
 </script>

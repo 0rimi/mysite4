@@ -36,7 +36,7 @@ public class ApiGuestbookController {
 		return guestList;
 	}
 	
-	//@ResponseBody
+	@ResponseBody
 	@RequestMapping("/write")
 	public GuestbookVo write(@ModelAttribute GuestbookVo guestbookVo) {
 		System.out.println("ApiGuestbookContoller.write()");
@@ -44,9 +44,10 @@ public class ApiGuestbookController {
 		//저장하고 저장된값 리턴
 		GuestbookVo gVo = guestbookservice.addGuestResultVo(guestbookVo);
 		System.out.println(gVo);
+		
 		return gVo;
 	}
 	
-	//글쓰고, 다시 리스트 로딩필요
+	
 	
 }
