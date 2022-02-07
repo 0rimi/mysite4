@@ -109,6 +109,8 @@ public class BoardService {
 		boolean next = false;
 		if(endPageNo*listCnt < totalCnt) {
 			next = true;
+		}else { //다음 화살표가 안보이면 마지막 버튼값을 다시 계산
+			endPageNo = (int)(Math.ceil(totalCnt/(double)listCnt));
 		}
 		
 		//이전 화살표 유무
@@ -122,8 +124,8 @@ public class BoardService {
 		pageMap.put("prev", prev);
 		pageMap.put("starNo", startPageNo);
 		pageMap.put("endNo", endPageNo);
-		pageMap.put("next", next);		
-		
+		pageMap.put("next", next);	
+		pageMap.put("boardList", boardList);		
 		
 		return pageMap;
 	}

@@ -58,7 +58,7 @@ public class BoardController {
 		
 		System.out.println(pageMap);
 		
-		//model.addAttribute("bdList", boardList);
+		model.addAttribute("pMap", pageMap);
 		
 		//뷰
 		return "board/list";
