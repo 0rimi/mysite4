@@ -1,6 +1,8 @@
 package com.javaex.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +62,29 @@ public class BoardDao {
 		System.out.println(count + "건이 삭제되었습니다.");
 		
 		return count;
+	}
+	
+	//리스트페이징
+	public List<BoardVo> pageList(int sn, int en) {
+		System.out.println("boardDao.selectList");
+		System.out.println(sn +"," + en);
+		
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("sn", sn);
+		map.put("en", en);
+		
+		List<BoardVo> boardList = sqlSession.selectList("listpaging", map);
+		
+		return boardList;
+	}
+	
+	//전체 글 갯수
+	public int selectTotal() {
+		System.out.println("boardDao.selectTotal");
+		
+		int Cnt = sqlSession.selectOne("board.totalCnt");
+		
+		return Cnt;
 	}
 	
 }
