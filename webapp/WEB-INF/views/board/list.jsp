@@ -83,7 +83,7 @@
 								</c:if>
 								<c:forEach begin="${pMap.starNo }" end="${pMap.endNo }" step="1" var="page">						
 									<c:choose>
-										<c:when test="${page eq crtPage}">
+										<c:when test="${crtPage eq page}">
 											<li class="active"><a href="${pageContext.request.contextPath}/board/List?crtPage=${page}">${page}</a></li>
 										</c:when>
 										<c:otherwise>
